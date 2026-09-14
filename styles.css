@@ -1,0 +1,13 @@
+.mod-pair-my-pair {
+    max-width: 34rem;
+}
+
+.mod-pair-avatar .userpicture {
+    width: 100px;
+    height: 100px;
+}
+
+.mod-pair-choose .userpicture {
+    width: 48px;
+    height: 48px;
+}

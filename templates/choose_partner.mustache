@@ -1,0 +1,52 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_pair/choose_partner
+
+    Example context (json):
+    {
+        Aqui tem que criar o context em inglês
+    }
+}}
+<div class="mod-pair-choose mt-3">
+    <h3>{{#str}}choosepartner,pair{{/str}}</h3>
+    {{#hasusers}}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
+            {{#users}}
+                <div class="col mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <div>{{{picture}}}</div>
+                            <div class="flex-grow-1">
+                                <strong>{{name}}</strong>
+                                <form method="post" action="view.php?id={{cmid}}" class="mt-2">
+                                    <input type="hidden" name="sesskey" value="{{sesskey}}">
+                                    <input type="hidden" name="action" value="choose">
+                                    <input type="hidden" name="partnerid" value="{{id}}">
+                                    <button type="submit" class="btn btn-sm btn-primary">{{#str}}formpair,pair{{/str}}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/users}}
+        </div>
+    {{/hasusers}}
+    {{^hasusers}}
+        <div class="alert alert-info">{{#str}}noavailableusers,pair{{/str}}</div>
+    {{/hasusers}}
+</div>
