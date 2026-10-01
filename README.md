@@ -1,27 +1,16 @@
 # mod_pair - Pair
 
-Moodle activity module for forming pairs of students inside a course.
+Pair is a Moodle activity for forming pairs of students inside a course.
 
-## Features
+## How it works
 
-- Students can choose another currently available participant.
-- Teachers can randomly pair all currently unpaired participants.
-- Manual, random, or combined pairing modes.
-- Existing pairs are preserved when random pairing runs.
-- If the number of available participants is odd, one participant remains unpaired.
-- Optional opening and closing dates.
-- Optional pair changes by students.
-- Teacher report showing current pairs and unpaired students.
+Students can choose another participant who is currently available, while teachers can also create pairs automatically
+from everyone who is still unpaired.
 
-## Requirements
+The activity supports manual pairing, random pairing or a combination of both. Existing pairs are preserved when random
+pairing runs, and when the number of available participants is odd one person remains unpaired.
 
-- Moodle 4.5 or later.
-- PHP version supported by the target Moodle release.
+## Teacher controls
 
-## Installation
-
-Copy the `pair` directory to `mod/pair` in the Moodle installation and complete the standard Moodle upgrade process.
-
-## License
-
-GNU GPL v3 or later.
+Teachers can define opening and closing dates, decide whether students may change partners and use a report that shows
+all current pairs together with students who are still unpaired.
