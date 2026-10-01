@@ -105,11 +105,11 @@ $partner = $canparticipate ? $manager->get_partner($USER->id) : null;
 $member = $canparticipate ? $manager->get_member_record($USER->id) : null;
 
 if ($member && $partner) {
-    $data = (object) [
+    $data = (object)[
         "partnername" => fullname($partner),
         "partnerprofileurl" => new moodle_url("/user/view.php", ["id" => $partner->id, "course" => $course->id]),
         "partnerpicture" => $OUTPUT->user_picture($partner, ["courseid" => $course->id, "size" => 100]),
-        "canleave" => (bool) $pair->allowchange,
+        "canleave" => (bool)$pair->allowchange,
         "cmid" => $cm->id,
         "sesskey" => sesskey(),
     ];
@@ -119,7 +119,7 @@ if ($member && $partner) {
     $users = [];
     foreach ($available as $user) {
         $users[] = [
-            "id" => (int) $user->id,
+            "id" => (int)$user->id,
             "name" => fullname($user),
             "picture" => $OUTPUT->user_picture($user, ["courseid" => $course->id, "size" => 48]),
         ];

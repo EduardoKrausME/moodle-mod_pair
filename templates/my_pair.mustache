@@ -29,9 +29,9 @@
         <p class="h4"><a href="{{partnerprofileurl}}">{{partnername}}</a></p>
         {{#canleave}}
             <form method="post" action="view.php?id={{cmid}}" class="mt-3">
-                <input type="hidden" name="sesskey" value="{{sesskey}}">
-                <input type="hidden" name="action" value="leave">
-                <button type="submit" class="btn btn-outline-secondary">{{#str}}changepair,pair{{/str}}</button>
+            <input type="hidden" name="sesskey" value="{{sesskey}}">
+            <input type="hidden" name="action" value="leave">
+            <button type="submit" class="btn btn-outline-secondary">{{#str}}changepair,pair{{/str}}</button>
             </form>
         {{/canleave}}
     </div>

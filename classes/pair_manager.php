@@ -26,6 +26,7 @@ namespace mod_pair;
 
 use cm_info;
 use context_module;
+use core_collator;
 use moodle_exception;
 use stdClass;
 
@@ -134,12 +135,12 @@ class pair_manager {
         $paired = array_fill_keys(array_map("intval", $paired), true);
 
         foreach ($users as $id => $user) {
-            if ((int) $id === $excludeuserid || isset($paired[(int) $id])) {
+            if ((int)$id === $excludeuserid || isset($paired[(int)$id])) {
                 unset($users[$id]);
             }
         }
 
-        \core_collator::asort_objects_by_property($users, "lastname", \core_collator::SORT_NATURAL);
+        core_collator::asort_objects_by_property($users, "lastname", core_collator::SORT_NATURAL);
         return $users;
     }
 
@@ -160,7 +161,7 @@ class pair_manager {
             throw new moodle_exception("cannotpairself", "pair");
         }
         if (!has_capability("mod/pair:participate", $this->context, $userid) ||
-                !has_capability("mod/pair:participate", $this->context, $partnerid)) {
+            !has_capability("mod/pair:participate", $this->context, $partnerid)) {
             throw new moodle_exception("invalidparticipant", "pair");
         }
 
@@ -240,7 +241,7 @@ class pair_manager {
         while (count($users) >= 2) {
             $first = array_pop($users);
             $second = array_pop($users);
-            $this->create_pair_for_users((int) $first->id, (int) $second->id, $createdby);
+            $this->create_pair_for_users((int)$first->id, (int)$second->id, $createdby);
             $created++;
         }
 
@@ -270,8 +271,8 @@ class pair_manager {
         foreach ($records as $record) {
             if (!isset($pairs[$record->groupid])) {
                 $pairs[$record->groupid] = [
-                    "id" => (int) $record->groupid,
-                    "timecreated" => (int) $record->timecreated,
+                    "id" => (int)$record->groupid,
+                    "timecreated" => (int)$record->timecreated,
                     "members" => [],
                 ];
             }
@@ -312,7 +313,7 @@ class pair_manager {
     private function create_group(int $createdby): int {
         global $DB;
 
-        return $DB->insert_record("pair_groups", (object) [
+        return $DB->insert_record("pair_groups", (object)[
             "pairid" => $this->pair->id,
             "createdby" => $createdby,
             "timecreated" => time(),
@@ -329,7 +330,7 @@ class pair_manager {
     private function add_member(int $groupid, int $userid): void {
         global $DB;
 
-        $DB->insert_record("pair_members", (object) [
+        $DB->insert_record("pair_members", (object)[
             "pairid" => $this->pair->id,
             "groupid" => $groupid,
             "userid" => $userid,

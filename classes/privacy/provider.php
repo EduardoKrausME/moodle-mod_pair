@@ -30,6 +30,7 @@ use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
 use core_privacy\local\request\approved_userlist;
 use core_privacy\local\request\contextlist;
+use core_privacy\local\request\core_userlist_provider;
 use core_privacy\local\request\helper;
 use core_privacy\local\request\transform;
 use core_privacy\local\request\userlist;
@@ -39,9 +40,9 @@ use core_privacy\local\request\writer;
  * Class provider.
  */
 class provider implements
-        \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\plugin\provider,
-        \core_privacy\local\request\core_userlist_provider {
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\plugin\provider,
+    core_userlist_provider {
 
     /**
      * Method get_metadata.
@@ -149,7 +150,7 @@ class provider implements
                     "groupid = :groupid AND userid <> :userid",
                     ["groupid" => $member->groupid, "userid" => $userid]
                 );
-                $data["pair_membership"] = (object) [
+                $data["pair_membership"] = (object)[
                     "partner_userid" => $partnerid ?: null,
                     "timecreated" => transform::datetime($member->timecreated),
                 ];
@@ -160,8 +161,8 @@ class provider implements
                 "createdby" => $userid,
             ], "timecreated ASC");
             if ($createdgroups) {
-                $data["pairs_created"] = array_map(static function($group) {
-                    return (object) [
+                $data["pairs_created"] = array_map(static function ($group) {
+                    return (object)[
                         "groupid" => $group->id,
                         "timecreated" => transform::datetime($group->timecreated),
                     ];
@@ -169,7 +170,7 @@ class provider implements
             }
 
             if ($data) {
-                writer::with_context($context)->export_data([], (object) $data);
+                writer::with_context($context)->export_data([], (object)$data);
             }
         }
     }
@@ -218,7 +219,7 @@ class provider implements
         }
 
         foreach ($userlist->get_userids() as $userid) {
-            self::delete_user_from_contexts((int) $userid, [$context]);
+            self::delete_user_from_contexts((int)$userid, [$context]);
         }
     }
 

@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_pair\pair_manager;
+
 require_once(__DIR__ . "/../../config.php");
 
 $id = required_param("id", PARAM_INT);
@@ -38,7 +40,7 @@ $PAGE->set_title(get_string("reporttitle", "pair", format_string($pair->name)));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 
-$manager = new \mod_pair\pair_manager($pair, $cm, $context);
+$manager = new pair_manager($pair, $cm, $context);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_sesskey();

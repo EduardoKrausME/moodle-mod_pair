@@ -34,10 +34,11 @@
                             <div class="flex-grow-1">
                                 <strong>{{name}}</strong>
                                 <form method="post" action="view.php?id={{cmid}}" class="mt-2">
-                                    <input type="hidden" name="sesskey" value="{{sesskey}}">
-                                    <input type="hidden" name="action" value="choose">
-                                    <input type="hidden" name="partnerid" value="{{id}}">
-                                    <button type="submit" class="btn btn-sm btn-primary">{{#str}}formpair,pair{{/str}}</button>
+                                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                                <input type="hidden" name="action" value="choose">
+                                <input type="hidden" name="partnerid" value="{{id}}">
+                                <button type="submit" class="btn btn-sm btn-primary">{{#str}}
+                                    formpair,pair{{/str}}</button>
                                 </form>
                             </div>
                         </div>
