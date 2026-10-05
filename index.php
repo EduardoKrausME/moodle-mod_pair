@@ -46,7 +46,7 @@ if (!$instances) {
         $table->data[] = [
             html_writer::link(new moodle_url("/mod/pair/view.php",
                 ["id" => $instance->coursemodule]), format_string($instance->name)),
-            format_text($instance->intro, $instance->introformat),
+            format_module_intro("pair", $instance, $instance->coursemodule),
         ];
     }
     echo html_writer::table($table);
