@@ -32,6 +32,7 @@ function pair_supports($feature) {
     return match ($feature) {
         FEATURE_MOD_INTRO => true,
         FEATURE_SHOW_DESCRIPTION => true,
+        FEATURE_BACKUP_MOODLE2 => true,
         default => null,
     };
 }
